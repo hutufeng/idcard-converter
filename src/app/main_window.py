@@ -336,7 +336,7 @@ class MainWindow(QMainWindow):
             self, "保存Excel文件", "", "Excel Files (*.xlsx)"
         )
         if file_name:
-            export_to_excel(self.app_state, file_name)
+            export_to_excel(self.app_state, file_name, self.table_view)
             self.status_bar.showMessage(f"数据已导出到 {file_name}")
 
     def show_header_context_menu(self, pos):
