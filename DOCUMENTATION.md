@@ -156,23 +156,38 @@ if getattr(sys, 'frozen', False):
 
 ## 10. 环境与启动
 
+本项目支持在 Conda 环境或标准的 Python 虚拟环境（venv）中运行。
+
 1.  **创建 Conda 环境**:
     ```bash
     conda create -n idcard_ocr python=3.11 -y
     ```
-2.  **激活环境**:
+2.  **激活 Conda 环境**:
     ```bash
     conda activate idcard_ocr
     ```
-3.  **安装依赖**:
+3.  **创建并激活 Python 虚拟环境 (venv)**:
+    ```bash
+    python -m venv venv
+    # Windows
+    .\venv\Scripts\activate
+    # Linux / macOS
+    # source venv/bin/activate
+    ```
+4.  **安装依赖**:
     ```bash
     pip install -r requirements.txt
     ```
-4.  **运行程序 (开发模式)**:
+
+**重要提示：模型文件处理**
+
+在开发模式下（非打包状态），如果 `models/` 目录中没有放置模型文件，`rapidocr` 在首次运行时会通过 `huggingface_hub` 自动从网络下载所需模型到 `~/.cache/huggingface/hub` 目录。**此过程需要互联网连接。** 为确保应用程序完全离线运行，建议您手动下载 `rapidocr` 所需的模型文件，并将其放置在项目根目录下的 `models/` 文件夹中。
+
+5.  **运行程序 (开发模式)**:
     ```bash
     python src/__main__.py
     ```
-5.  **打包程序**:
+6.  **打包程序**:
     ```bash
     python scripts/build.py
     ```

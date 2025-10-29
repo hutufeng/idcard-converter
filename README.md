@@ -29,6 +29,8 @@
 
 ## 安装与运行 (开发模式)
 
+本项目支持在 Conda 环境或标准的 Python 虚拟环境（venv）中运行。
+
 ### 1. 克隆仓库
 
 ```bash
@@ -36,11 +38,23 @@ git clone [您的仓库地址]
 cd idcard
 ```
 
-### 2. 创建并激活 Conda 环境
+### 2. 环境设置
+
+#### 选项 A: 使用 Conda 环境 (推荐)
 
 ```bash
 conda create -n idcard_ocr python=3.11 -y
 conda activate idcard_ocr
+```
+
+#### 选项 B: 使用 Python 虚拟环境 (venv)
+
+```bash
+python -m venv venv
+# Windows
+.\venv\Scripts\activate
+# Linux / macOS
+# source venv/bin/activate
 ```
 
 ### 3. 安装依赖
