@@ -1,0 +1,8 @@
+PySide6
+openpyxl
+pytest
+ruff
+rapidocr
+onnxruntime
+huggingface_hub
+pyinstaller

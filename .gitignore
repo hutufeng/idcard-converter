@@ -1,0 +1,24 @@
+# PyInstaller artifacts
+build/
+dist/
+*.spec
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE files
+.idea/
+.vscode/
+
+# Environment files
+.env
+virtualenv/
+venv/
+
+# User-specific files
+*.log
+
+# Exclude models and GEMINI.md as requested
+models/
+GEMINI.md
