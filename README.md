@@ -76,6 +76,10 @@ pip install -r requirements.txt
 python src/__main__.py
 ```
 
+**重要提示：图片方向**
+
+本应用程序不提供自动图片方向校正功能。为确保 OCR 识别的准确性，请务必在处理前提供方向正确的（正向的）图片。
+
 ## 打包应用程序
 
 要将应用程序打包为可执行文件，请运行项目根目录下的 `scripts/build.py` 脚本：
