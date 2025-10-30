@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
     QMenu,
     QProgressBar,
     QPushButton,
+    QSplitter,
     QStatusBar,
     QTableView,
     QToolBar,
@@ -202,7 +203,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.central_widget)
 
         # Main Layout (Horizontal for file list and table)
-        self.main_layout = QHBoxLayout(self.central_widget)
+        # self.main_layout = QHBoxLayout(self.central_widget) # Removed
 
         # Left Panel for File List
         self.left_panel = QVBoxLayout()
@@ -213,8 +214,10 @@ class MainWindow(QMainWindow):
         self.remove_file_button = QPushButton("移除文件")
         self.remove_file_button.clicked.connect(self.remove_selected_files)
         self.left_panel.addWidget(self.remove_file_button)
-
-        self.main_layout.addLayout(self.left_panel, 1) # 1/3 width for file list
+        
+        # Create a container widget for the left panel layout
+        left_container_widget = QWidget()
+        left_container_widget.setLayout(self.left_panel)
 
         # Right Panel for Table View
         self.right_panel = QVBoxLayout()
@@ -240,7 +243,21 @@ class MainWindow(QMainWindow):
             pass
         self.right_panel.addWidget(self.table_view)
 
-        self.main_layout.addLayout(self.right_panel, 2) # 2/3 width for table
+        # Create a container widget for the right panel layout
+        right_container_widget = QWidget()
+        right_container_widget.setLayout(self.right_panel)
+
+        # Create a QSplitter and add the left and right container widgets
+        self.splitter = QSplitter(Qt.Horizontal)
+        self.splitter.addWidget(left_container_widget)
+        self.splitter.addWidget(right_container_widget)
+
+        # Set initial sizes for the splitter panes (optional, here 1:2 ratio)
+        self.splitter.setSizes([self.width() // 3, 2 * self.width() // 3])
+
+        # Set the central widget's layout to contain the splitter
+        central_layout = QVBoxLayout(self.central_widget)
+        central_layout.addWidget(self.splitter)
 
     def select_files(self):
         files, _ = QFileDialog.getOpenFileNames(
